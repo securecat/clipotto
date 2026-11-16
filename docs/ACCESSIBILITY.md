@@ -21,6 +21,7 @@ For the UI, we target WCAG 2.2 Level AA, and we treat it as a minimum, not a cei
 - Keyboard: Tested. All features can be operated with a keyboard alone. The tray icon can be reached with the standard Windows keys (Win + B to move to the notification area, arrow keys to select the icon, and the Application key or Shift + F10 to open the menu)
 - Windows contrast themes: Tested
 - Windows text size setting: Tested, but not supported yet (see [Known Limitations](#known-limitations))
+- Display scaling (high DPI): Not supported yet (see [Known Limitations](#known-limitations))
 
 ## Known Limitations
 
@@ -65,6 +66,7 @@ When you change the UI:
 - Use system colors (`SystemColors`) so that Windows contrast themes apply. If you must use your own colors, keep text contrast at 7:1 or higher for body text and 4.5:1 or higher for secondary text, and keep non-text elements, such as borders and icons, at 3:1 or higher against adjacent colors
 - Use the system font (`SystemFonts.MessageBoxFont`) and don't make text smaller than it. Don't fix font sizes in points or pixels
 - Use automatic layout (`AutoSize`, `TableLayoutPanel`, `FlowLayoutPanel`) instead of fixed positions and sizes, so that longer text and larger fonts don't get cut off
+- Keep the app DPI-aware so that text stays sharp at higher display scaling, and make the UI text follow the Windows text size setting. Scale any pixel values, such as margins and image sizes, with `Dpi.Scale`
 - Don't rely only on notifications that disappear on their own. Make the same information available somewhere that stays, such as the save folder or the tray icon's tooltip
 - Don't add anything that moves on its own, such as animations or auto-scrolling
 
@@ -105,6 +107,7 @@ UIは WCAG 2.2 のレベル AA を目標とし、これを上限ではなく下�
 - キーボード：確認済みです。すべての機能をキーボードだけで操作できます。タスクトレイのアイコンは、Windows の標準のキー操作（Win + B で通知領域に移動し、矢印キーでアイコンを選んで、アプリケーションキーか Shift + F10 でメニューを開く）で操作できます
 - Windows のコントラストテーマ：確認済みです
 - Windows の文字サイズの設定：確認しましたが、まだ対応していません（[既知の制限](#既知の制限)を参照）
+- 拡大率（高 DPI）：まだ対応していません（[既知の制限](#既知の制限)を参照）
 
 ## 既知の制限
 
@@ -149,6 +152,7 @@ UIを変更するときは、次を守ってください。
 - Windows のコントラストテーマが効くように、システムの色（`SystemColors`）を使う。どうしても独自の色を使う場合は、テキストのコントラスト比を本文で 7:1 以上、補足的なテキストで 4.5:1 以上にし、境界線やアイコンなどテキスト以外の要素も、隣り合う色に対して 3:1 以上にする
 - システムのフォント（`SystemFonts.MessageBoxFont`）を使い、それより小さくしない。文字サイズをポイントやピクセルで固定しない
 - 長い文字列や大きなフォントでも切れないように、位置や大きさを固定せず、自動レイアウト（`AutoSize`・`TableLayoutPanel`・`FlowLayoutPanel`）を使う
+- 拡大率を上げても文字がぼやけないように、高 DPI への対応を保つ。Windows の文字サイズの設定を変えたら、UI の文字の大きさも変わるようにする。余白や画像の大きさなどのピクセル値は、`Dpi.Scale` で拡大する
 - ひとりでに消える通知だけに頼らない。同じ情報を、保存フォルダやトレイアイコンのツールチップなど、消えない場所でも確かめられるようにする
 - アニメーションや自動スクロールなど、ひとりでに動くものを作らない
 
