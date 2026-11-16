@@ -1,6 +1,6 @@
 # Accessibility
 
-Last updated: 2026-11-16
+Last updated: 2026-11-17
 
 ## Priorities and Goals
 
@@ -12,7 +12,7 @@ This statement covers:
 
 The image files Clipotto saves are copies of what was on the clipboard, and are not covered by this statement.
 
-For the UI, we target WCAG 2.2 Level AA, and we treat it as a minimum, not a ceiling. Some of our own rules are stricter than AA (see [Contributor Expectations](#contributor-expectations)). We have not had a third-party evaluation, so this is a target, not a claim of conformance.
+For the UI, we target WCAG 2.2 Level AA, and we treat it as a minimum, not a ceiling. Some of our own rules are stricter than AA (see [Contributor Expectations](#contributor-expectations)).
 
 ## Supported Environments
 
@@ -84,7 +84,7 @@ Suggestions about this statement or our approach to accessibility are also welco
 
 # アクセシビリティ
 
-最終更新：2026-11-16
+最終更新：2026-11-17
 
 ## 優先事項と目標
 
@@ -96,7 +96,7 @@ Suggestions about this statement or our approach to accessibility are also welco
 
 Clipotto が保存する画像ファイルは、クリップボードに入っていたものの複製なので、この文書の対象外です。
 
-UIは WCAG 2.2 のレベル AA を目標とし、これを上限ではなく下限と考えています。AAより厳しい独自の基準もあります（[貢献者への期待](#貢献者への期待)を参照）。第三者による試験は受けていないため、これは目標であり、適合を表明するものではありません。
+UIは WCAG 2.2 のレベル AA を目標とし、これを上限ではなく下限と考えています。AAより厳しい独自の基準もあります（[貢献者への期待](#貢献者への期待)を参照）。
 
 ## 対応している環境
 
