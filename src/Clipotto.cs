@@ -14,6 +14,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 // exe のプロパティ（詳細タブ）に表示される情報
 [assembly: AssemblyTitle(Clipotto.AppInfo.Name)]
@@ -50,11 +51,37 @@ namespace Clipotto
         }
     }
 
+    // 高 DPI 対応のためのヘルパー
+    static class Dpi
+    {
+        [DllImport("user32.dll")]
+        private static extern bool SetProcessDPIAware();
+
+        // ウィンドウを作る前に呼ぶこと。呼ばないと、拡大率が 100% より大きいディスプレイで
+        // Windows がウィンドウを画像として引き伸ばすため、文字がぼやける
+        public static void EnableAwareness()
+        {
+            try { SetProcessDPIAware(); }
+            catch { }
+        }
+
+        // 96 DPI（拡大率 100%）を基準にしたピクセル値を、いまの DPI に合わせて拡大する
+        public static int Scale(int pixels)
+        {
+            using (var g = Graphics.FromHwnd(IntPtr.Zero))
+            {
+                return (int)Math.Round(pixels * g.DpiX / 96f);
+            }
+        }
+    }
+
     static class Program
     {
         [STAThread]
         static void Main()
         {
+            Dpi.EnableAwareness();
+
             bool createdNew;
             using (var mutex = new Mutex(true, "Clipotto_SingleInstance", out createdNew))
             {
@@ -72,6 +99,7 @@ namespace Clipotto
     class ClipottoContext : ApplicationContext
     {
         private readonly NotifyIcon tray;
+        private readonly ContextMenuStrip menu;
         private readonly ClipboardWatcher watcher;
         private readonly string saveDir;
         private readonly ToolStripMenuItem pauseItem;
@@ -87,7 +115,9 @@ namespace Clipotto
                 Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), AppInfo.Name);
             Directory.CreateDirectory(saveDir);
 
-            var menu = new ContextMenuStrip();
+            menu = new ContextMenuStrip();
+            // Windows の「文字のサイズ」の設定が反映されるメニュー用のフォント
+            menu.Font = SystemFonts.MenuFont;
             menu.Items.Add("保存フォルダを開く", null, (s, e) => OpenFolder());
             pauseItem = new ToolStripMenuItem("一時停止", null, (s, e) => TogglePause());
             menu.Items.Add(pauseItem);
@@ -110,6 +140,16 @@ namespace Clipotto
 
             watcher = new ClipboardWatcher();
             watcher.ClipboardChanged += OnClipboardChanged;
+
+            // 起動中に文字のサイズなどの設定が変わったら、メニューのフォントを取り直す
+            SystemEvents.UserPreferenceChanged += OnUserPreferenceChanged;
+        }
+
+        private void OnUserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
+        {
+            Font old = menu.Font;
+            menu.Font = SystemFonts.MenuFont;
+            old.Dispose();
         }
 
         private void UpdateTrayText()
@@ -201,6 +241,7 @@ namespace Clipotto
         protected override void ExitThreadCore()
         {
             if (aboutForm != null && !aboutForm.IsDisposed) aboutForm.Close();
+            SystemEvents.UserPreferenceChanged -= OnUserPreferenceChanged;
             watcher.Dispose();
             tray.Visible = false;
             tray.Dispose();
@@ -223,8 +264,10 @@ namespace Clipotto
             StartPosition = FormStartPosition.CenterScreen;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            Padding = new Padding(16);
+            Padding = new Padding(Dpi.Scale(16));
             Icon = AppInfo.LoadIcon(SystemInformation.SmallIconSize);
+
+            int gap = Dpi.Scale(3);
 
             var layout = new TableLayoutPanel();
             layout.AutoSize = true;
@@ -234,10 +277,11 @@ namespace Clipotto
 
             // 左: アイコン
             var pic = new PictureBox();
-            pic.Size = new Size(64, 64);
+            int iconSize = Dpi.Scale(64);
+            pic.Size = new Size(iconSize, iconSize);
             pic.SizeMode = PictureBoxSizeMode.Zoom;
-            pic.Image = AppInfo.LoadIcon(new Size(64, 64)).ToBitmap();
-            pic.Margin = new Padding(0, 0, 16, 0);
+            pic.Image = AppInfo.LoadIcon(new Size(iconSize, iconSize)).ToBitmap();
+            pic.Margin = new Padding(0, 0, Dpi.Scale(16), 0);
             layout.Controls.Add(pic, 0, 0);
 
             // 右: テキスト
@@ -253,7 +297,7 @@ namespace Clipotto
             info.Controls.Add(MakeLabel(AppInfo.Description));
 
             var copyright = MakeLabel(AppInfo.Copyright);
-            copyright.Margin = new Padding(3, 14, 3, 0);
+            copyright.Margin = new Padding(gap, Dpi.Scale(14), gap, 0);
             info.Controls.Add(copyright);
             info.Controls.Add(MakeLabel(AppInfo.License));
 
@@ -262,7 +306,7 @@ namespace Clipotto
                 var link = new LinkLabel();
                 link.Text = AppInfo.RepositoryUrl;
                 link.AutoSize = true;
-                link.Margin = new Padding(3, 14, 3, 0);
+                link.Margin = new Padding(gap, Dpi.Scale(14), gap, 0);
                 link.LinkClicked += (s, e) =>
                 {
                     try { Process.Start(AppInfo.RepositoryUrl); }
@@ -276,9 +320,9 @@ namespace Clipotto
             var ok = new Button();
             ok.Text = "OK";
             ok.AutoSize = true;
-            ok.MinimumSize = new Size(88, 0);
+            ok.MinimumSize = new Size(Dpi.Scale(88), 0);
             ok.Anchor = AnchorStyles.Right;
-            ok.Margin = new Padding(3, 18, 0, 0);
+            ok.Margin = new Padding(gap, Dpi.Scale(18), 0, 0);
             ok.Click += (s, e) => Close();
             layout.Controls.Add(ok, 0, 1);
             layout.SetColumnSpan(ok, 2);
