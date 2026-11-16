@@ -4,8 +4,6 @@ Last updated: 2026-11-16
 
 ## Priorities and Goals
 
-Saving an image from the clipboard usually takes several steps: open an image editor, paste, choose a folder in a save dialog, and type a file name. For people who use a keyboard alone, a screen reader, a screen magnifier, or who find repeated mouse operations tiring, each of those steps adds effort. Clipotto aims to reduce this to a single copy. Because it runs in the background with very little UI, the few places where people do interact with it — the tray menu, notifications, and the About dialog — need to work reliably with assistive technology.
-
 This statement covers:
 
 - The system tray icon and its right-click menu
@@ -89,8 +87,6 @@ Suggestions about this statement or our approach to accessibility are also welco
 最終更新：2026-11-16
 
 ## 優先事項と目標
-
-クリップボードの画像を保存するには、ふつうは何段階もの操作が必要です。画像編集アプリを開き、貼り付け、保存ダイアログでフォルダを選び、ファイル名を入力します。キーボードだけで操作する人、スクリーンリーダーや画面拡大鏡を使う人、マウスの操作を繰り返すのが負担になる人にとっては、その一つひとつが手間になります。Clipotto は、これを「コピーするだけ」に減らすことを目指しています。裏で動き続けるアプリで、UI はごくわずかです。だからこそ、利用者が実際に触れる数少ない場所（トレイメニュー、通知、「Clipotto について」ダイアログ）は、支援技術で確実に使えるようにする必要があります。
 
 この文書が対象とするのは、次のとおりです。
 
