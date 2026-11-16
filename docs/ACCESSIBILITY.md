@@ -17,16 +17,14 @@ For the UI, we target WCAG 2.2 Level AA, and we treat it as a minimum, not a cei
 ## Supported Environments
 
 - Operating systems: Windows 10 / 11
-- Screen readers: Not yet tested (Narrator, NVDA, and PC-Talker are not yet tested)
-- Keyboard: Not yet tested. The tray icon is expected to be reachable with the standard Windows keys (Win + B to move to the notification area, arrow keys to select the icon, and the Application key or Shift + F10 to open the menu). The About dialog is expected to be closable with Enter or Esc.
-- Windows contrast themes and text size settings: Not yet tested
+- Screen readers: Tested with NVDA. Narrator and PC-Talker are not yet tested
+- Keyboard: Tested. All features can be operated with a keyboard alone. The tray icon can be reached with the standard Windows keys (Win + B to move to the notification area, arrow keys to select the icon, and the Application key or Shift + F10 to open the menu)
+- Windows contrast themes: Tested
+- Windows text size settings: Not yet tested
 
 ## Known Limitations
 
 - The UI is in Japanese only.
-- Notifications are dismissed automatically by Windows after a few seconds, and are not shown on screen while "Do not disturb" (Focus) is on. You can review them in the notification center (Win + N), and check saved images with "Open save folder" (保存フォルダを開く) in the tray menu.
-- Clipotto is not DPI-aware, so on displays with scaling above 100%, Windows enlarges it as a bitmap and the text may look blurry.
-- The "Pause" (一時停止) and "Notify on save" (保存時に通知する) settings are reset when you exit the app. If you turn notifications off, there is no other feedback when an image is saved.
 
 ## Reporting Accessibility Barriers
 
@@ -101,16 +99,14 @@ UIは WCAG 2.2 のレベル AA を目標とし、これを上限ではなく下�
 ## 対応している環境
 
 - OS：Windows 10 / 11
-- スクリーンリーダー：まだ試していません（ナレーター、NVDA、PC-Talker はいずれも未確認）
-- キーボード：まだ試していません。タスクトレイのアイコンは、Windows の標準のキー操作（Win + B で通知領域に移動し、矢印キーでアイコンを選んで、アプリケーションキーか Shift + F10 でメニューを開く）で操作できる想定です。「Clipotto について」ダイアログは、Enter か Esc で閉じられる想定です。
-- Windows のコントラストテーマ、文字サイズの設定：まだ試していません
+- スクリーンリーダー：NVDA で確認済みです。ナレーターと PC-Talker は、まだ試していません
+- キーボード：確認済みです。すべての機能をキーボードだけで操作できます。タスクトレイのアイコンは、Windows の標準のキー操作（Win + B で通知領域に移動し、矢印キーでアイコンを選んで、アプリケーションキーか Shift + F10 でメニューを開く）で操作できます
+- Windows のコントラストテーマ：確認済みです
+- Windows の文字サイズの設定：まだ試していません
 
 ## 既知の制限
 
 - UI は日本語だけです。
-- 通知は、数秒たつと Windows によって自動的に消えます。また、「応答不可」（集中モード）がオンのときは画面に表示されません。通知は通知センター（Win + N）で見返せます。保存された画像は、トレイメニューの「保存フォルダを開く」から確認できます。
-- Clipotto は高 DPI に対応していないため、拡大率を 100% より大きくしているディスプレイでは、Windows が画像として引き伸ばして表示し、文字がぼやけることがあります。
-- 「一時停止」や「保存時に通知する」の設定は、アプリを終了すると元に戻ります。通知をオフにすると、画像を保存したことをほかの方法では知ることができません。
 
 ## アクセシビリティの問題を報告する
 
