@@ -20,14 +20,12 @@ For the UI, we target WCAG 2.2 Level AA, and we treat it as a minimum, not a cei
 - Screen readers: Tested with NVDA and Narrator. PC-Talker is not yet tested
 - Keyboard: Tested. All features can be operated with a keyboard alone. The tray icon can be reached with the standard Windows keys (Win + B to move to the notification area, arrow keys to select the icon, and the Application key or Shift + F10 to open the menu)
 - Windows contrast themes: Tested
-- Windows text size setting: Tested, but not supported yet (see [Known Limitations](#known-limitations))
-- Display scaling (high DPI): Not supported yet (see [Known Limitations](#known-limitations))
+- Windows text size setting: Tested. The text of the menu and the About dialog follows the setting, including changes made while Clipotto is running
+- Display scaling (high DPI): Tested. Text stays sharp when the scaling is changed without signing out
 
 ## Known Limitations
 
 - The UI is in Japanese only.
-- Clipotto is not DPI-aware. On displays with scaling above 100%, Windows enlarges the menu and the About dialog as a bitmap, so the text may look blurry.
-- Changing the text size in Windows settings (Accessibility > Text size) does not change the size of Clipotto's text.
 
 ## Reporting Accessibility Barriers
 
@@ -106,14 +104,12 @@ UIは WCAG 2.2 のレベル AA を目標とし、これを上限ではなく下�
 - スクリーンリーダー：NVDA とナレーターで確認済みです。PC-Talker は、まだ試していません
 - キーボード：確認済みです。すべての機能をキーボードだけで操作できます。タスクトレイのアイコンは、Windows の標準のキー操作（Win + B で通知領域に移動し、矢印キーでアイコンを選んで、アプリケーションキーか Shift + F10 でメニューを開く）で操作できます
 - Windows のコントラストテーマ：確認済みです
-- Windows の文字サイズの設定：確認しましたが、まだ対応していません（[既知の制限](#既知の制限)を参照）
-- 拡大率（高 DPI）：まだ対応していません（[既知の制限](#既知の制限)を参照）
+- Windows の文字サイズの設定：確認済みです。メニューと「Clipotto について」ダイアログの文字が、設定に合わせて変わります。Clipotto を起動したまま設定を変えても追従します
+- 拡大率（高 DPI）：確認済みです。サインインし直さずに拡大率を変えても、文字はぼやけません
 
 ## 既知の制限
 
 - UI は日本語だけです。
-- Clipotto は高 DPI に対応していません。拡大率を 100% より大きくしているディスプレイでは、Windows がメニューや「Clipotto について」ダイアログを画像として引き伸ばして表示するため、文字がぼやけることがあります。
-- Windows の設定（アクセシビリティ → 文字のサイズ）で文字を大きくしても、Clipotto の文字の大きさは変わりません。
 
 ## アクセシビリティの問題を報告する
 
