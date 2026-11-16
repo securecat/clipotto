@@ -30,7 +30,7 @@ namespace Clipotto
     static class AppInfo
     {
         public const string Name = "Clipotto";
-        public const string Version = "1.0.0.0";
+        public const string Version = "1.1.0.0";
         public const string Description = "クリップボードの画像を自動で保存するツール";
         public const string Copyright = "Copyright (c) 2026 securecat";
         public const string License = "Released under the MIT License.";
