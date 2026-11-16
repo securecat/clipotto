@@ -66,7 +66,7 @@ When you change the UI:
 - Use system colors (`SystemColors`) so that Windows contrast themes apply. If you must use your own colors, keep text contrast at 7:1 or higher for body text and 4.5:1 or higher for secondary text, and keep non-text elements, such as borders and icons, at 3:1 or higher against adjacent colors
 - Use the system font (`SystemFonts.MessageBoxFont`) and don't make text smaller than it. Don't fix font sizes in points or pixels
 - Use automatic layout (`AutoSize`, `TableLayoutPanel`, `FlowLayoutPanel`) instead of fixed positions and sizes, so that longer text and larger fonts don't get cut off
-- Keep the app DPI-aware so that text stays sharp at higher display scaling, and make the UI text follow the Windows text size setting. Scale any pixel values, such as margins and image sizes, with `Dpi.Scale`
+- Keep the app DPI-aware so that text stays sharp at higher display scaling, and make the UI text follow the Windows text size setting. Clipotto handles per-monitor DPI itself, so match pixel values, such as margins and image sizes, with `Dpi.Scale`, and fonts with `Dpi.CreateFont`, to the DPI of the monitor where the UI is shown
 - Don't rely only on notifications that disappear on their own. Make the same information available somewhere that stays, such as the save folder or the tray icon's tooltip
 - Don't add anything that moves on its own, such as animations or auto-scrolling
 
@@ -152,7 +152,7 @@ UIを変更するときは、次を守ってください。
 - Windows のコントラストテーマが効くように、システムの色（`SystemColors`）を使う。どうしても独自の色を使う場合は、テキストのコントラスト比を本文で 7:1 以上、補足的なテキストで 4.5:1 以上にし、境界線やアイコンなどテキスト以外の要素も、隣り合う色に対して 3:1 以上にする
 - システムのフォント（`SystemFonts.MessageBoxFont`）を使い、それより小さくしない。文字サイズをポイントやピクセルで固定しない
 - 長い文字列や大きなフォントでも切れないように、位置や大きさを固定せず、自動レイアウト（`AutoSize`・`TableLayoutPanel`・`FlowLayoutPanel`）を使う
-- 拡大率を上げても文字がぼやけないように、高 DPI への対応を保つ。Windows の文字サイズの設定を変えたら、UI の文字の大きさも変わるようにする。余白や画像の大きさなどのピクセル値は、`Dpi.Scale` で拡大する
+- 拡大率を上げても文字がぼやけないように、高 DPI への対応を保つ。Windows の文字サイズの設定を変えたら、UI の文字の大きさも変わるようにする。Clipotto はモニターごとの拡大率を自前で扱っているため、余白や画像の大きさなどのピクセル値は `Dpi.Scale` で、フォントは `Dpi.CreateFont` で、UI を表示するモニターの DPI に合わせる
 - ひとりでに消える通知だけに頼らない。同じ情報を、保存フォルダやトレイアイコンのツールチップなど、消えない場所でも確かめられるようにする
 - アニメーションや自動スクロールなど、ひとりでに動くものを作らない
 
