@@ -5,10 +5,112 @@
 <h1 align="center">Clipotto</h1>
 
 <p align="center">
-  クリップボードに入った画像を、自動でファイルに保存してくれる Windows 用の小さな常駐ツールです。
+  A small Windows tray app that automatically saves images copied to the clipboard as files.
 </p>
 
+> **Note**
+> The app's user interface is in Japanese only. Menu names in this section are shown with their Japanese labels.
+
+## Features
+
+- **Just copy, and it's saved** — Every time an image lands on the clipboard, such as a screenshot (Win + Shift + S) or a browser's "Copy image", it is saved as a PNG.
+- **Lightweight** — It uses Windows' clipboard change notifications instead of polling, so it uses almost no CPU.
+- **No duplicates** — If the same image is put on the clipboard several times in a row, it is saved only once.
+- **Lives in the system tray** — It stays out of your way and is operated from the right-click menu.
+- **Easy to build** — No Visual Studio required. It builds with the C# compiler that comes with Windows.
+
+## Screenshot
+
+![Tray menu](docs/screenshot-menu.png)
+
+## Requirements
+
+- Windows 10 / 11
+- .NET Framework 4.x (included with Windows 10 / 11)
+
+## Installation
+
+### Use the prebuilt exe
+
+Download `Clipotto.exe` from [Releases](../../releases), put it anywhere you like, and run it. No installation is needed.
+
+> **Note**
+> Because the exe is not signed, Windows SmartScreen may show a warning the first time you run it. In that case, click "More info" and then "Run anyway".
+
+### Build from source
+
+1. Clone this repository, or download it as a ZIP.
+2. Double-click `build.bat` in the `src` folder.
+3. `Clipotto.exe` is created in the `src` folder.
+
+If `Clipotto.ico` is in the same folder, the icon is embedded in the exe. After building, the icon is shown even without the ico file.
+
+<details>
+<summary>Building with a command directly</summary>
+
+Run the following command in the `src` folder.
+
+```bat
+%WINDIR%\Microsoft.NET\Framework64\v4.0.30319\csc.exe ^
+  /nologo /codepage:65001 /target:winexe /out:Clipotto.exe ^
+  /r:System.Windows.Forms.dll /r:System.Drawing.dll ^
+  /win32icon:Clipotto.ico /resource:Clipotto.ico,Clipotto.ico ^
+  Clipotto.cs
+```
+
+</details>
+
+## Usage
+
+When you start `Clipotto.exe`, an icon appears in the system tray. From then on, just copy an image and it is saved automatically.
+
+### Save location
+
+```
+%USERPROFILE%\Pictures\Clipotto\
+```
+
+Files are named after the date and time they were saved (e.g. `20261116_153012_123.png`).
+
+### Tray menu
+
+Right-click the icon to use the following menu items.
+
+| Menu item | Description |
+| --- | --- |
+| Open save folder (保存フォルダを開く) | Opens the save folder in File Explorer (you can also double-click the icon) |
+| Pause (一時停止) | Temporarily stops saving. Select it again to resume |
+| Notify on save (保存時に通知する) | Toggles whether a notification is shown when an image is saved |
+| About Clipotto (Clipotto について) | Shows the version and license information |
+| Exit (終了) | Exits Clipotto |
+
+### Starting automatically when your PC starts
+
+1. Press Win + R, type `shell:startup`, and press Enter.
+2. Place a shortcut to `Clipotto.exe` in the folder that opens.
+
+## Notes
+
+- If you copy an image *file* in File Explorer, the clipboard holds the file path rather than image data, so nothing is saved.
+- Depending on the source app, transparency may be lost and the background may turn black.
+- When Windows "Do not disturb" (Focus) is on, notifications do not pop up on screen and appear only in the notification center.
+- The "Pause" and "Notify on save" settings are reset when you exit the app.
+
+## Changelog
+
+### [1.0.0] - 2026-11-16
+
+#### Added
+
+- Initial release
+
+See [CHANGELOG.md](CHANGELOG.md) for the full history.
+
 ---
+
+<p align="center">
+  クリップボードに入った画像を、自動でファイルに保存してくれる Windows 用の小さな常駐ツールです。
+</p>
 
 ## 特長
 
@@ -97,7 +199,7 @@
 
 ## 更新履歴
 
-### v1.0.0 — 2026-11-16
+### [1.0.0] - 2026-11-16
 
 #### 追加
 
