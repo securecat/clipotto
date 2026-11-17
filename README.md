@@ -114,6 +114,12 @@ See [CHANGELOG.md](CHANGELOG.md) for the full history.
 ---
 
 <p align="center">
+  <img src="docs/icon.png" width="128" alt="Clipotto icon">
+</p>
+
+<h1 align="center">クリポット</h1>
+
+<p align="center">
   クリップボードに入った画像を、自動でファイルに保存してくれる Windows 用の小さな常駐ツールです。
 </p>
 
