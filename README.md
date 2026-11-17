@@ -40,7 +40,7 @@ Download `Clipotto.exe` from [Releases](../../releases), put it anywhere you lik
 ### Build from source
 
 1. Clone this repository, or download it as a ZIP.
-2. Double-click `build.bat` in the `src` folder.
+2. Run `build.bat` in the `src` folder.
 3. `Clipotto.exe` is created in the `src` folder.
 
 If `Clipotto.ico` is in the same folder, the icon is embedded in the exe. After building, the icon is shown even without the ico file.
@@ -152,7 +152,7 @@ See [CHANGELOG.md](CHANGELOG.md) for the full history.
 ### ソースからビルドする
 
 1. このリポジトリをクローン、または ZIP でダウンロードします。
-2. `src` フォルダの中にある `build.bat` をダブルクリックします。
+2. `src` フォルダの中にある `build.bat` を実行します。
 3. `src` フォルダに `Clipotto.exe` ができあがります。
 
 `Clipotto.ico` が同じフォルダにあれば、アイコンが exe に埋め込まれます。ビルド後は ico ファイルがなくてもアイコンは表示されます。
